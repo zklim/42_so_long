@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 12:42:32 by zhlim             #+#    #+#             */
-/*   Updated: 2022/12/28 11:01:47 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/11 14:43:25 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	count_until_n(char *str)
 	return (i);
 }
 
-int	ft_strlen(char *str)
+int	ft_strlen_gnl(char *str)
 {
 	int	i;
 
@@ -40,7 +40,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *save, char *buf, int r)
+char	*ft_strjoin_gnl(char *save, char *buf, int r)
 {
 	char	*res;
 	int		i;
@@ -48,7 +48,7 @@ char	*ft_strjoin(char *save, char *buf, int r)
 
 	i = 0;
 	j = 0;
-	res = malloc(sizeof(char) * (ft_strlen(save) + r + 1));
+	res = malloc(sizeof(char) * (ft_strlen_gnl(save) + r + 1));
 	if (!res)
 		return (NULL);
 	if (save)
@@ -66,7 +66,7 @@ char	*ft_strjoin(char *save, char *buf, int r)
 	return (res);
 }
 
-int	ft_strchr(char *str, char c)
+int	ft_strchr_gnl(char *str, char c)
 {
 	int	i;
 

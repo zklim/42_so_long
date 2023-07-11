@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   path_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/11 16:58:07 by zhlim            ###   ########.fr       */
+/*   Created: 2023/07/11 17:23:18 by zhlim             #+#    #+#             */
+/*   Updated: 2023/07/11 17:24:49 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int ac, char **av)
+void    path_check(int fd, int *start, int *exit_c, int *collect)
 {
-	validate_map(ac, av[1]);
-	initialize_mlx();
+	char	*line;
 
-	return (0);
+	line = get_next_line(fd);
 }

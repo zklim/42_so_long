@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 12:40:28 by zhlim             #+#    #+#             */
-/*   Updated: 2022/12/28 11:02:54 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/11 14:47:05 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_setnewline(char *save)
 	if (!save || !save[i])
 		return (NULL);
 	i = count_until_n(save);
-	remain = ft_strlen(save) - i;
+	remain = ft_strlen_gnl(save) - i;
 	if (!remain)
 	{
 		free(save);
@@ -81,8 +81,8 @@ char	*ft_readline(int fd, char *save)
 	r = read(fd, buf, BUFFER_SIZE);
 	while (r > 0)
 	{
-		save = ft_strjoin(save, buf, r);
-		if (ft_strchr(save, '\n'))
+		save = ft_strjoin_gnl(save, buf, r);
+		if (ft_strchr_gnl(save, '\n'))
 			break ;
 		r = read(fd, buf, BUFFER_SIZE);
 	}

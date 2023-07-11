@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 12:40:26 by zhlim             #+#    #+#             */
-/*   Updated: 2022/12/28 10:25:21 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/11 14:41:54 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include <unistd.h>
 
 int		count_until_n(char *str);
-int		ft_strlen(char *str);
-char	*ft_strjoin(char *save, char *buf, int r);
-int		ft_strchr(char *str, char c);
+int		ft_strlen_gnl(char *str);
+char	*ft_strjoin_gnl(char *save, char *buf, int r);
+int		ft_strchr_gnl(char *str, char c);
 char	*ft_getline(char *save);
 char	*ft_setnewline(char *save);
 char	*ft_readline(int fd, char *save);
