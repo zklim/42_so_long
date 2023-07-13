@@ -6,16 +6,32 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/11 16:58:07 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/13 18:15:16 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	initialize_map(t_map *map)
+{
+	map->grid = NULL;
+	map->start_count = 0;
+	map->exit_count = 0;
+	map->collectible_count = 0;
+	map->rows = 0;
+	map->columns = 0;
+	map->player_x = 0;
+	map->player_y = 0;
+}
+
 int	main(int ac, char **av)
 {
-	validate_map(ac, av[1]);
-	initialize_mlx();
+	t_map	map;
 
+	if (ac != 2)
+		print_error_exit(1);
+	initialize_map(&map);
+	validate_map(av[1], &map);
+	initialize_mlx();
 	return (0);
 }

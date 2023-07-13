@@ -6,32 +6,46 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/11 17:28:23 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/13 18:15:36 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include <mlx.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
 # include "libft/ft_printf/include/ft_printf.h"
 # include "libft/get_next_line/get_next_line.h"
 # include "libft/libft.h"
+# include <fcntl.h>
+# include <mlx.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct	s_data {
+typedef struct s_data
+{
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}			t_data;
 
-void    validate_map(int ac, char *map);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void    initialize_mlx();
-void    print_error_exit(unsigned int errno);
-void    path_check(int fd, int *start, int *exit_c, int *collect);
+typedef struct s_map
+{
+	char	**grid;
+	int		start_count;
+	int		exit_count;
+	int		collectible_count;
+	int		rows;
+	int		columns;
+	int		player_x;
+	int		player_y;
+}			t_map;
+
+void		print_error_exit(unsigned int errno);
+void		validate_map(char *av, t_map *map);
+void		save_as_grid(int fd, t_map *map);
+void		initialize_mlx(void);
+void		free_error_exit(t_map *map, unsigned int errno);
+void		lines_check(t_map *map);
 
 #endif
