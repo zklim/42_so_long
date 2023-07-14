@@ -6,11 +6,11 @@
 #    By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 15:22:50 by zhlim             #+#    #+#              #
-#    Updated: 2023/07/13 15:38:21 by zhlim            ###   ########.fr        #
+#    Updated: 2023/07/14 12:42:40 by zhlim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC				= so_long.c validate_map.c initialize_mlx.c error_handling.c save_as_grid.c lines_check.c
+SRC				= so_long.c validate_map.c initialize_mlx.c error_handling.c save_as_grid.c lines_check.c path_check.c
 SRCGNL			= $(addprefix libft/get_next_line/, $(addsuffix .c, get_next_line get_next_line_utils))
 
 OBJ				= $(patsubst %.c,%.o,$(SRC))

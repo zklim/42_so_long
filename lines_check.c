@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 15:34:45 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/13 18:21:49 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:26:34 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,19 +45,19 @@ void	check_first_last_rows(t_map *map)
 	}
 }
 
-void	check_coordinate(t_map *map, char c, int i, int row)
+void	check_coordinate(t_map *map, char c, int col, int row)
 {
-	if (c != '0' && c != '1')
+	if (c != EMPTY && c != WALL)
 	{
-		if (c == 'P')
+		if (c == PLAYER)
 		{
 			map->start_count++;
-			map->player_x = i;
+			map->player_x = col;
 			map->player_y = row;
 		}
-		else if (c == 'E')
+		else if (c == EXIT)
 			map->exit_count++;
-		else if (c == 'C')
+		else if (c == COLLECTIBLE)
 			map->collectible_count++;
 		else
 			free_error_exit(map, 4);

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:44:26 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/13 17:25:19 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:41:32 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ void	print_error(unsigned int errno)
 		perror("Less than 1 collectibles");
 	else if (errno == 7)
 		perror("No map found");
+	else if (errno == 8)
+		perror("Can't pick up all collectibles");
+	else if (errno == 9)
+		perror("Exit is unreachable");
 }
 
 void	print_error_exit(unsigned int errno)

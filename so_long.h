@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/13 18:15:36 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:42:34 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define EMPTY '0'
+# define WALL '1'
+# define PLAYER 'P'
+# define EXIT 'E'
+# define COLLECTIBLE 'C'
 
 typedef struct s_data
 {
@@ -39,6 +45,8 @@ typedef struct s_map
 	int		columns;
 	int		player_x;
 	int		player_y;
+	int		exit_found;
+	int		collected;
 }			t_map;
 
 void		print_error_exit(unsigned int errno);
@@ -47,5 +55,6 @@ void		save_as_grid(int fd, t_map *map);
 void		initialize_mlx(void);
 void		free_error_exit(t_map *map, unsigned int errno);
 void		lines_check(t_map *map);
+void		path_check(t_map *map);
 
 #endif

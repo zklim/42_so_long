@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:12:35 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/13 17:24:18 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/14 12:44:10 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	validate_map(char *path, t_map *map)
 	close(fd);
 	lines_check(map);
 	components_check(map);
-	// path_check(fd, &start_count, &exit_count, &collectible_count);
+	path_check(map);
 }
