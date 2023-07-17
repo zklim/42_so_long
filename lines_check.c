@@ -86,6 +86,7 @@ void	lines_check(t_map *map)
 	int	i;
 
 	i = 0;
+	line_length = 0;
 	if (map->grid != NULL)
 	{
 		line_length = ft_strlen_sl(map->grid[0]);

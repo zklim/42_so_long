@@ -21,7 +21,8 @@ CFLAGS			= -Wall -Werror -Wextra -g -fsanitize=address
 
 RM				= rm -f
 
-INCLUDES		= -Imlx -Ift_printf/include/ -Ilibft/get_next_line/ -Ilibft/ -I.
+INCLUDES		= -I/usr/include -Imlx_linux -Ift_printf/include/ -Ilibft/get_next_line/ -Ilibft/ -I.
+# -Imlx -Ift_printf/include/ -Ilibft/get_next_line/ -Ilibft/ -I.
 
 NAME			= so_long
 
@@ -31,16 +32,18 @@ LIBFTFLAGS		= -Llibft/ -lft
 LIBPRINTF		= libft/ft_printf/libftprintf.a
 LIBPRINTFFLAGS	= -Llibft/ft_printf -lftprintf 
 
-LIBMLXFLAGS		= -Lmlx -lmlx
-MLXFRAMEWORK	= -framework OpenGL -framework AppKit
+LIBMLXFLAGS		= -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+# -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 %.o:			%.c
-				$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+				$(CC) $(CFLAGS) $(INCLUDES) -O3 -c $< -o $@
+# $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all:			$(NAME)
 
 $(NAME): 		$(OBJ) $(OBJGNL) 
-				$(CC) $(CFLAGS) $(LIBFTFLAGS) $(LIBPRINTFFLAGS) $(LIBMLXFLAGS) $(MLXFRAMEWORK) $^ -o $@
+				$(CC) $(CFLAGS) $^ $(LIBFTFLAGS) $(LIBPRINTFFLAGS) $(LIBMLXFLAGS) -o $@
+# $(CC) $(CFLAGS) $^ $(LIBFTFLAGS) $(LIBPRINTFFLAGS) $(LIBMLXFLAGS) -o $@
 
 $(OBJ):			$(LIBPRINTF) $(LIBFT)
 
