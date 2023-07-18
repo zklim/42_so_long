@@ -17,7 +17,7 @@ OBJ				= $(patsubst %.c,%.o,$(SRC))
 OBJGNL			= $(patsubst %.c,%.o,$(SRCGNL))
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			= -Wall -Werror -Wextra -g
 
 RM				= rm -f
 

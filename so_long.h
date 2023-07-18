@@ -26,6 +26,14 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
+# define ESC 65307
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+}			t_mlx;
+
 typedef struct s_data
 {
 	void	*img;
