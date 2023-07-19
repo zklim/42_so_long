@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/14 12:42:34 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/19 17:07:38 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
 
-# define ESC 65307
-
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*mlx_win;
-}			t_mlx;
+# define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define W 13
+# define S 1
+# define A 0
+# define D 2
 
 typedef struct s_data
 {
@@ -45,6 +47,8 @@ typedef struct s_data
 
 typedef struct s_map
 {
+	void	*mlx;
+	void	*mlx_win;
 	char	**grid;
 	int		start_count;
 	int		exit_count;
@@ -60,9 +64,10 @@ typedef struct s_map
 void		print_error_exit(unsigned int errno);
 void		validate_map(char *av, t_map *map);
 void		save_as_grid(int fd, t_map *map);
-void		initialize_mlx(void);
+void		initialize_mlx(t_map *map);
 void		free_error_exit(t_map *map, unsigned int errno);
 void		lines_check(t_map *map);
 void		path_check(t_map *map);
+int			key_hook(int keycode, t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/14 12:23:04 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/19 17:03:52 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	initialize_map(t_map *map)
 {
+	map->mlx = NULL;
+	map->mlx_win = NULL;
 	map->grid = NULL;
 	map->start_count = 0;
 	map->exit_count = 0;
@@ -32,8 +34,10 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		print_error_exit(1);
+	if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
+		print_error_exit(10);
 	initialize_map(&map);
 	validate_map(av[1], &map);
-	initialize_mlx();
+	initialize_mlx(&map);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:44:26 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/14 12:41:32 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/19 17:04:12 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	print_error(unsigned int errno)
 {
-	if (errno == 1)
+	if (errno == 0);
+	else if (errno == 1)
 		perror("No map provided");
 	else if (errno == 2)
 		perror("Map is not rectangular");
@@ -32,6 +33,8 @@ void	print_error(unsigned int errno)
 		perror("Can't pick up all collectibles");
 	else if (errno == 9)
 		perror("Exit is unreachable");
+	else if (errno == 10)
+		perror("Not .ber file");
 }
 
 void	print_error_exit(unsigned int errno)
@@ -40,17 +43,22 @@ void	print_error_exit(unsigned int errno)
 	exit(1);
 }
 
-void	free_error_exit(t_map *map, unsigned int errno)
+void	free_map(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	print_error(errno);
 	while (i < map->rows)
 	{
 		free(map->grid[i]);
 		i++;
 	}
 	free(map->grid);
+}
+
+void	free_error_exit(t_map *map, unsigned int errno)
+{
+	print_error(errno);
+	free_map(map);
 	exit(1);
 }
