@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/19 17:07:38 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/20 16:54:54 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+# define TILESIZE_X 32
+# define TILESIZE_Y 32
+
+# define BACKGROUND_PATH "./textures/Background.xpm"
+# define WALL_PATH "./textures/Wall.xpm"
+# define EXIT_CLOSED_PATH "./textures/Exit(Closed).xpm"
+# define EXIT_OPENED_PATH "./textures/Exit(Opened).xpm"
+# define COLLECTIBLES_PATH "./textures/Treasure.xpm"
+# define CHARACTER_PATH "./textures/Character1.xpm"
 
 # define EMPTY '0'
 # define WALL '1'
@@ -36,14 +46,22 @@
 # define A 0
 # define D 2
 
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}			t_data;
+	int		width;
+	int		height;
+}			t_img;
+
+typedef struct s_graphic
+{
+	t_img	background;
+	t_img	wall;
+	t_img	character;
+	t_img	exit_closed;
+	t_img	exit_opened;
+	t_img	collectibles;
+}			t_graphic;
 
 typedef struct s_map
 {
@@ -57,7 +75,8 @@ typedef struct s_map
 	int		columns;
 	int		player_x;
 	int		player_y;
-	int		exit_found;
+	int		exit_opened;
+	int		exited;
 	int		collected;
 }			t_map;
 
@@ -69,5 +88,6 @@ void		free_error_exit(t_map *map, unsigned int errno);
 void		lines_check(t_map *map);
 void		path_check(t_map *map);
 int			key_hook(int keycode, t_map *map);
+void		free_map(t_map *map);
 
 #endif

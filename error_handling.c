@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 16:44:26 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/19 17:04:12 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/20 13:41:43 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	free_error_exit(t_map *map, unsigned int errno)
 {
 	print_error(errno);
 	free_map(map);
-	exit(1);
+	exit(0);
 }

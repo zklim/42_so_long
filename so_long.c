@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/19 17:03:52 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/20 16:43:11 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	initialize_map(t_map *map)
 	map->columns = 0;
 	map->player_x = 0;
 	map->player_y = 0;
-	map->exit_found = 0;
+	map->exit_opened = 0;
+	map->exited = 0;
 	map->collected = 0;
 }
 

@@ -6,11 +6,28 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:23:18 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/14 12:59:29 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/20 16:53:37 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+char	**temp_grid(t_map *map)
+{
+	char	**new_grid;
+	int		i;
+
+	i = 0;
+	new_grid = (char **)malloc(map->rows * sizeof(char *));
+	if (!new_grid)
+		return (NULL);
+	while (i < map->rows)
+	{
+		new_grid[i] = ft_strdup(map->grid[i]);
+		i++;
+	}
+	return (new_grid);
+}
 
 void	flood_fill(t_map *temp_map, int col, int row)
 {
@@ -22,7 +39,7 @@ void	flood_fill(t_map *temp_map, int col, int row)
 		return ;
 	if (*current_coord == EXIT)
 	{
-		temp_map->exit_found = 1;
+		temp_map->exited = 1;
 		return ;
 	}
 	if (*current_coord == COLLECTIBLE)
@@ -40,9 +57,15 @@ void	flood_fill(t_map *temp_map, int col, int row)
 void	valid_check(t_map *map, t_map *temp_map)
 {
 	if (temp_map->collected != temp_map->collectible_count)
+	{
+		free_map(temp_map);
 		free_error_exit(map, 8);
-	if (temp_map->exit_found != 1)
+	}
+	if (temp_map->exited != 1)
+	{
+		free_map(temp_map);
 		free_error_exit(map, 9);
+	}
 }
 
 void	path_check(t_map *map)
@@ -50,6 +73,8 @@ void	path_check(t_map *map)
 	t_map temp_map;
 
 	temp_map = *map;
+	temp_map.grid = temp_grid(map);
 	flood_fill(&temp_map, map->player_x, map->player_y);
 	valid_check(map, &temp_map);
+	free_map(&temp_map);
 }

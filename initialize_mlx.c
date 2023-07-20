@@ -6,45 +6,82 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:14:02 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/19 18:07:08 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/20 16:51:57 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	load_images(t_graphic *graphic, t_map *map)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	graphic->background.img = mlx_xpm_file_to_image(map->mlx, BACKGROUND_PATH,
+			&graphic->background.width, &graphic->background.height);
+	graphic->wall.img = mlx_xpm_file_to_image(map->mlx, WALL_PATH,
+			&graphic->wall.width, &graphic->wall.height);
+	graphic->exit_closed.img = mlx_xpm_file_to_image(map->mlx, EXIT_CLOSED_PATH,
+			&graphic->exit_closed.width, &graphic->exit_closed.height);
+	graphic->exit_opened.img = mlx_xpm_file_to_image(map->mlx, EXIT_OPENED_PATH,
+			&graphic->exit_opened.width, &graphic->exit_opened.height);
+	graphic->collectibles.img = mlx_xpm_file_to_image(map->mlx,
+			COLLECTIBLES_PATH, &graphic->collectibles.width,
+			&graphic->collectibles.height);
+	graphic->character.img = mlx_xpm_file_to_image(map->mlx, CHARACTER_PATH,
+			&graphic->character.width, &graphic->character.height);
 }
 
+void	put_images(t_graphic *graphic, t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < map->rows)
+	{
+		j = 0;
+		while (j < map->columns)
+		{
+			mlx_put_image_to_window(map->mlx, map->mlx_win,
+					graphic->background.img, j * TILESIZE_X, i * TILESIZE_Y);
+			if (map->grid[i][j] == WALL)
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+						graphic->wall.img, j * TILESIZE_X, i * TILESIZE_Y);
+			if (map->grid[i][j] == PLAYER)
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+						graphic->character.img, j * TILESIZE_X, i * TILESIZE_Y);
+			if (map->grid[i][j] == EXIT)
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+						graphic->exit_closed.img, j * TILESIZE_X, i
+						* TILESIZE_Y);
+			if (map->grid[i][j] == COLLECTIBLE)
+				mlx_put_image_to_window(map->mlx, map->mlx_win,
+						graphic->collectibles.img, j * TILESIZE_X, i
+						* TILESIZE_Y);
+			j++;
+		}
+		i++;
+	}
+}
 
 int	destroy_win(t_map *map)
 {
 	(void)*map;
 	ft_printf("Window closing\n");
 	exit(0);
-	return 0;
+	return (0);
 }
 
 void	initialize_mlx(t_map *map)
 {
-	t_data	img;
-	char	*tileset_path = "./textures/Tilesets/Grass.xpm";
-	int		img_width;
-	int		img_height;
+	t_graphic graphic;
 
 	map->mlx = mlx_init();
-	map->mlx_win = mlx_new_window(map->mlx, 1000, 1000, "so_long");
-	img.img = mlx_xpm_file_to_image(map->mlx, tileset_path, &img_width, &img_height);
-	ft_printf("%p, %d, %d", img.img, img_width, img_height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-			&img.endian);
-	my_mlx_pixel_put(&img, 16, 16, 0x00000000);
+	map->mlx_win = mlx_new_window(map->mlx, map->columns * TILESIZE_X, map->rows
+			* TILESIZE_Y, "so_long");
+	load_images(&graphic, map);
+	put_images(&graphic, map);
 	mlx_key_hook(map->mlx_win, key_hook, &map->mlx);
 	mlx_hook(map->mlx_win, 17, 0, destroy_win, &map);
-	mlx_put_image_to_window(map->mlx, map->mlx_win, img.img, 0, 0);
+	// mlx_loop_hook(map->mlx, render, map);
 	mlx_loop(map->mlx);
 }
