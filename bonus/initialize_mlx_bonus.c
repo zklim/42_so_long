@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_mlx.c                                   :+:      :+:    :+:   */
+/*   initialize_mlx_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:14:02 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 10:25:55 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 11:22:51 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	load_images(t_map *map)
 {
@@ -25,8 +25,17 @@ void	load_images(t_map *map)
 	map->graphic.collectibles.img = mlx_xpm_file_to_image(map->mlx,
 			COLLECTIBLES_PATH, &map->graphic.collectibles.width,
 			&map->graphic.collectibles.height);
-	map->graphic.character.img = mlx_xpm_file_to_image(map->mlx,
-			CHARACTER_PATH, &map->graphic.character.width,
+	map->graphic.character.img[0] = mlx_xpm_file_to_image(map->mlx,
+			FRONT0_PATH, &map->graphic.character.width,
+			&map->graphic.character.height);
+	map->graphic.character.img[1] = mlx_xpm_file_to_image(map->mlx,
+			FRONT1_PATH, &map->graphic.character.width,
+			&map->graphic.character.height);
+	map->graphic.character.img[2] = mlx_xpm_file_to_image(map->mlx,
+			FRONT2_PATH, &map->graphic.character.width,
+			&map->graphic.character.height);
+	map->graphic.character.img[3] = mlx_xpm_file_to_image(map->mlx,
+			FRONT3_PATH, &map->graphic.character.width,
 			&map->graphic.character.height);
 }
 
@@ -83,5 +92,6 @@ void	initialize_mlx(t_map *map)
 	put_images(map);
 	mlx_key_hook(map->mlx_win, key_hook, &map->mlx);
 	mlx_hook(map->mlx_win, 17, 0, destroy_win, &map);
+	mlx_loop_hook(map->mlx, render, map);
 	mlx_loop(map->mlx);
 }

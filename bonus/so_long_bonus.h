@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/21 21:04:19 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 11:22:01 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include "libft/ft_printf/include/ft_printf.h"
-# include "libft/get_next_line/get_next_line.h"
-# include "libft/libft.h"
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
+# include "../libft/ft_printf/include/ft_printf.h"
+# include "../libft/get_next_line/get_next_line.h"
+# include "../libft/libft.h"
 # include <fcntl.h>
 # include <mlx.h>
 # include <stdlib.h>
@@ -31,7 +31,10 @@
 # define EXIT_CLOSED_PATH "./textures/Exit(Closed).xpm"
 # define EXIT_OPENED_PATH "./textures/Exit(Opened).xpm"
 # define COLLECTIBLES_PATH "./textures/Treasure.xpm"
-# define CHARACTER_PATH "./textures/Front1.xpm"
+# define FRONT0_PATH "./textures/Front0.xpm"
+# define FRONT1_PATH "./textures/Front1.xpm"
+# define FRONT2_PATH "./textures/Front2.xpm"
+# define FRONT3_PATH "./textures/Front3.xpm"
 
 # define EMPTY '0'
 # define WALL '1'
@@ -56,14 +59,21 @@ typedef struct s_img
 	int		height;
 }			t_img;
 
+typedef struct s_sprite
+{
+	void	*img[4];
+	int		width;
+	int		height;
+}			t_sprite;
+
 typedef struct s_graphic
 {
-	t_img		background;
-	t_img		wall;
-	t_img		character;
-	t_img		exit_closed;
-	t_img		exit_opened;
-	t_img		collectibles;
+	t_img			background;
+	t_img			wall;
+	t_sprite		character;
+	t_img			exit_closed;
+	t_img			exit_opened;
+	t_img			collectibles;
 }			t_graphic;
 
 typedef struct s_coord
@@ -89,6 +99,7 @@ typedef struct s_map
 	int			exited;
 	int			collected;
 	int			walk_count;
+	int			frame;
 }			t_map;
 
 void		print_error_exit(char *msg);

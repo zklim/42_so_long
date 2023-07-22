@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   so_long_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/21 20:56:31 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 11:23:20 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	initialize_map(t_map *map)
 {
@@ -26,6 +26,7 @@ void	initialize_map(t_map *map)
 	map->exited = 0;
 	map->collected = 0;
 	map->walk_count = 0;
+	map->frame = 0;
 }
 
 int	main(int ac, char **av)

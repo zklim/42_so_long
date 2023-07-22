@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_hook.c                                         :+:      :+:    :+:   */
+/*   key_hook_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/21 21:02:46 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 11:29:10 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int draw_char(t_map *map, int cache_x, int cache_y)
 {
@@ -87,5 +87,6 @@ int	key_hook(int keycode, t_map *map)
 		if (map->exited)
 			ft_printf("You finished the game!\n");
 	}
+	map->frame++;
 	return (0);
 }

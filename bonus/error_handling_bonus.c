@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   error_handling_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/20 16:47:13 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/21 18:08:06 by zhlim            ###   ########.fr       */
+/*   Created: 2023/07/11 16:44:26 by zhlim             #+#    #+#             */
+/*   Updated: 2023/07/22 10:18:43 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-int render(t_map *map)
+void	print_error_exit(char *msg)
+{
+	ft_printf("%sError\n%s\n%s", RED, msg, NONE);
+	exit(1);
+}
+
+void	free_map(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < map->rows)
 	{
-		mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->player.sprite.img[i], map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+		free(map->grid[i]);
 		i++;
 	}
-	return 0;
+	free(map->grid);
+}
+
+void	free_error_exit(t_map *map, char *msg)
+{
+	if (msg)
+		ft_printf("%sError\n%s\n%s", RED, msg, NONE);
+	free_map(map);
+	exit(0);
 }
