@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/21 21:02:46 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 14:23:07 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 int draw_char(t_map *map, int cache_x, int cache_y)
 {
-	mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.background.img, cache_x * TILESIZE_X, cache_y * TILESIZE_Y);
 	if (map->exit.x == map->player.x && map->exit.y == map->player.y)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.exit_opened.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+			map->graphic.exit_closed.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
 	else
+	{
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
 			map->graphic.background.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.character.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);	
+	}
 	mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.character.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+			map->graphic.background.img, cache_x * TILESIZE_X, cache_y * TILESIZE_Y);
 	return 0;
 }
 

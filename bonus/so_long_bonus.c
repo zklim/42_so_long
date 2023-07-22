@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 11:23:20 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 16:35:43 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	initialize_map(t_map *map)
 	map->collected = 0;
 	map->walk_count = 0;
 	map->frame = 0;
+	map->player.direction = DOWN;
 }
 
 int	main(int ac, char **av)

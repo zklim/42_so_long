@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 11:22:01 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/22 16:53:44 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,22 @@
 
 # define TILESIZE_X 32
 # define TILESIZE_Y 32
+# define SPEED 8
 
+// static pictures
 # define BACKGROUND_PATH "./textures/Background.xpm"
 # define WALL_PATH "./textures/Wall.xpm"
 # define EXIT_CLOSED_PATH "./textures/Exit(Closed).xpm"
 # define EXIT_OPENED_PATH "./textures/Exit(Opened).xpm"
 # define COLLECTIBLES_PATH "./textures/Treasure.xpm"
-# define FRONT0_PATH "./textures/Front0.xpm"
-# define FRONT1_PATH "./textures/Front1.xpm"
-# define FRONT2_PATH "./textures/Front2.xpm"
-# define FRONT3_PATH "./textures/Front3.xpm"
+
+// sprite animations
+# define FRONT_PATH "./textures/Front"
+# define BACK_PATH "./textures/Back"
+# define LEFT_PATH "./textures/Left"
+# define RIGHT_PATH "./textures/Right"
+# define ENEMY_PATH "./textures/enemy/MiConv.com__tile0"
+# define SUFFIX ".xpm"
 
 # define EMPTY '0'
 # define WALL '1'
@@ -66,11 +72,25 @@ typedef struct s_sprite
 	int		height;
 }			t_sprite;
 
+typedef struct s_esprite
+{
+	void	*img[10];
+	int		width;
+	int		height;
+}			t_esprite;
+
 typedef struct s_graphic
 {
 	t_img			background;
 	t_img			wall;
-	t_sprite		character;
+	t_sprite		front;
+	t_sprite		back;
+	t_sprite		left;
+	t_sprite		right;
+	t_esprite		e_front;
+	t_esprite		e_back;
+	t_esprite		e_left;
+	t_esprite		e_right;
 	t_img			exit_closed;
 	t_img			exit_opened;
 	t_img			collectibles;
@@ -80,6 +100,7 @@ typedef struct s_coord
 {
 	int			x;
 	int			y;
+	int			direction;
 }			t_coord;
 
 typedef struct s_map
@@ -102,6 +123,12 @@ typedef struct s_map
 	int			frame;
 }			t_map;
 
+typedef struct s_range
+{
+	int		start;
+	int		end;
+}			t_range;
+
 void		print_error_exit(char *msg);
 void		validate_map(char *av, t_map *map);
 void		save_as_grid(int fd, t_map *map);
@@ -112,5 +139,8 @@ void		path_check(t_map *map);
 int			key_hook(int keycode, t_map *map);
 void		free_map(t_map *map);
 int 		render(t_map *map);
+void	load_sprite(t_map *map, t_sprite *sprite, t_range range, char *prefix);
+void		load_images(t_map *map);
+void		put_images(t_map *map);
 
 #endif

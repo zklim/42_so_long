@@ -6,13 +6,13 @@
 #    By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 15:22:50 by zhlim             #+#    #+#              #
-#    Updated: 2023/07/22 11:19:22 by zhlim            ###   ########.fr        #
+#    Updated: 2023/07/22 16:30:29 by zhlim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC				= so_long.c validate_map.c initialize_mlx.c error_handling.c save_as_grid.c lines_check.c path_check.c key_hook.c
 SRCGNL			= $(addprefix libft/get_next_line/, $(addsuffix .c, get_next_line get_next_line_utils))
-SRCB			= $(addprefix bonus/, $(addsuffix _bonus.c, so_long validate_map initialize_mlx error_handling save_as_grid lines_check path_check key_hook render))
+SRCB			= $(addprefix bonus/, $(addsuffix _bonus.c, so_long validate_map initialize_mlx error_handling save_as_grid lines_check path_check key_hook render load_sprite load_images))
 
 OBJ				= $(patsubst %.c,%.o,$(SRC))
 OBJGNL			= $(patsubst %.c,%.o,$(SRCGNL))
@@ -70,4 +70,6 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean
+rebonus:		fclean bonus
+
+.PHONY:			all clean fclean rebonus
