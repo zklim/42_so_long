@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:39:23 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:32:24 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ typedef struct s_graphic
 {
 	t_img		background;
 	t_img		wall;
+	t_img		exit_closed;
+	t_img		exit_opened;
+	t_img		collectibles;
 	t_sprite	front;
 	t_sprite	back;
 	t_sprite	left;
@@ -97,9 +100,6 @@ typedef struct s_graphic
 	t_sprite	d_back;
 	t_sprite	d_left;
 	t_sprite	d_right;
-	t_img		exit_closed;
-	t_img		exit_opened;
-	t_img		collectibles;
 }				t_graphic;
 
 typedef struct s_coord
@@ -159,5 +159,6 @@ void			move_enemy(t_map *map, int *e_frame);
 int				random_in_range(t_map *map, int max, int seed);
 char			**temp_grid(t_map *map);
 void			free_map(t_map *map);
+void	destroy_images(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:23:15 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:40:02 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 22:36:10 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	scale_with_map(t_map *map)
 	int	scale;
 
 	scale = map->rows * map->columns / map->collectible_count;
-	enemy_num = (scale % 20) + 1;
+	enemy_num = (scale % 13) + 1;
 	return (enemy_num);
 }
 

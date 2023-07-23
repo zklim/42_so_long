@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:47:13 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:41:17 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:13:25 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	put_string(t_map *map)
 	num = ft_itoa(map->walk_count);
 	res = ft_strjoin(str, num);
 	free(num);
-	mlx_string_put(map->mlx, map->mlx_win, 5, 2, 0x00FFFFFF, res);
+	mlx_string_put(map->mlx, map->mlx_win, 5, map->rows * TILESIZE_Y - 11, 0x00FFFFFF, res);
 	free(res);
 }
 
@@ -78,6 +78,8 @@ int	render(t_map *map)
 		{
 			if (map->frame == 4)
 				map->frame = 0;
+			if (map->e_frame == 10)
+				map->e_frame = 0;
 			put_images(map);
 			if (!map->exited && !map->player_dead)
 				direction(map);
@@ -87,6 +89,7 @@ int	render(t_map *map)
 				dead_counter++;
 			}
 			map->frame++;
+			map->e_frame++;
 			frame = 0;
 			put_string(map);
 			map->force_update = 0;

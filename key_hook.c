@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 14:23:07 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:21:13 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	key_hook(int keycode, t_map *map)
 	if (keycode == ESC)
 	{
 		ft_printf("Window closing\n");
+		destroy_images(map);
 		mlx_destroy_window(map->mlx, map->mlx_win);
 		free_error_exit(map, 0);
 	}

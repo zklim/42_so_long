@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:14:02 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:40:09 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:20:49 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	destroy_win(t_map *map)
 {
 	(void)*map;
 	ft_printf("Window closing\n");
+	destroy_images(map);
 	mlx_destroy_window(map->mlx, map->mlx_win);
 	free_sprites(map);
 	free_error_exit(map, 0);

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:29:31 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:40:35 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:01:38 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,19 +71,19 @@ void	enemy_direction(t_map *map, int col, int row)
 {
 	if (map->grid[row][col] == ENEMY_UP)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_back.img[map->frame], col * TILESIZE_X, row
+				map->graphic.e_back.img[map->e_frame], col * TILESIZE_X, row
 				* TILESIZE_X);
 	else if (map->grid[row][col] == ENEMY_DOWN)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_front.img[map->frame], col * TILESIZE_X, row
+				map->graphic.e_front.img[map->e_frame], col * TILESIZE_X, row
 				* TILESIZE_X);
 	else if (map->grid[row][col] == ENEMY_LEFT)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_left.img[map->frame], col * TILESIZE_X, row
+				map->graphic.e_left.img[map->e_frame], col * TILESIZE_X, row
 				* TILESIZE_X);
 	else if (map->grid[row][col] == ENEMY_RIGHT)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_right.img[map->frame], col * TILESIZE_X, row
+				map->graphic.e_right.img[map->e_frame], col * TILESIZE_X, row
 				* TILESIZE_X);
 }
 

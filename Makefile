@@ -6,14 +6,14 @@
 #    By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 15:22:50 by zhlim             #+#    #+#              #
-#    Updated: 2023/07/23 17:03:52 by zhlim            ###   ########.fr        #
+#    Updated: 2023/07/23 23:32:35 by zhlim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC				= so_long.c validate_map.c initialize_mlx.c error_handling.c save_as_grid.c lines_check.c path_check.c key_hook.c
+SRC				= so_long.c validate_map.c initialize_mlx.c error_handling.c save_as_grid.c lines_check.c path_check.c key_hook.c destroy_images.c
 SRCGNL			= $(addprefix libft/get_next_line/, $(addsuffix .c, get_next_line get_next_line_utils))
 SRCB			= $(addprefix bonus/, $(addsuffix _bonus.c, so_long validate_map initialize_mlx error_handling save_as_grid lines_check \
-					path_check key_hook render load_sprite load_images generate_enemy load_dead move_enemy))
+					path_check key_hook render load_sprite load_images generate_enemy load_dead move_enemy destroy_images))
 
 OBJ				= $(patsubst %.c,%.o,$(SRC))
 OBJGNL			= $(patsubst %.c,%.o,$(SRCGNL))

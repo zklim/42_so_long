@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:40:17 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:33:17 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	check_coord(t_map *map, int x, int y)
 		map->grid[y][x] = PLAYER;
 	map->player.x = x;
 	map->player.y = y;
-	ft_printf("Walk count: %d\n", ++map->walk_count);
+	++map->walk_count;
 	map->force_update = 1;
 }
 
@@ -78,6 +78,7 @@ int	key_hook(int keycode, t_map *map)
 	if (keycode == ESC)
 	{
 		ft_printf("Window closing\n");
+		destroy_images(map);
 		mlx_destroy_window(map->mlx, map->mlx_win);
 		free_sprites(map);
 		free_error_exit(map, 0);

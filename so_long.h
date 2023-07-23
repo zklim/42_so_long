@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/21 21:04:19 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 23:19:44 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ void		path_check(t_map *map);
 int			key_hook(int keycode, t_map *map);
 void		free_map(t_map *map);
 int 		render(t_map *map);
+void		destroy_images(t_map *map);
 
 #endif
