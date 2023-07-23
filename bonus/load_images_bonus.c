@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:29:31 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 16:47:45 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 12:48:35 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,16 @@ void	load_enemy(t_map *map)
 	t_range	range;
 
 	range.start = 0;
-	range.end = 9;
+	range.end = 10;
     load_sprite(map, &map->graphic.e_front, range, ENEMY_PATH);
 	range.start = 11;
-	range.end = 20;
+	range.end = 21;
     load_sprite(map, &map->graphic.e_back, range, ENEMY_PATH);
 	range.start = 22;
-	range.end = 31;
+	range.end = 32;
     load_sprite(map, &map->graphic.e_left, range, ENEMY_PATH);
 	range.start = 33;
-	range.end = 42;
+	range.end = 43;
     load_sprite(map, &map->graphic.e_right, range, ENEMY_PATH);
 }
 
@@ -62,38 +62,48 @@ void	load_images(t_map *map)
 	load_enemy(map);
 }
 
+void	images_to_window(t_map *map, int col, int row)
+{
+	if (map->grid[row][col] == WALL)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.wall.img, col * TILESIZE_X, row * TILESIZE_Y);
+	else if (map->grid[row][col] == EXIT)
+	{
+		if (map->exit_opened && !map->exited)
+			mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.exit_opened.img, col * TILESIZE_X, row
+				* TILESIZE_Y);
+		else
+			mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.exit_closed.img, col * TILESIZE_X, row
+				* TILESIZE_Y);	
+	}
+	else if (map->grid[row][col] == COLLECTIBLE)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.collectibles.img, col * TILESIZE_X, row
+				* TILESIZE_Y);
+	else if (map->grid[row][col] == ENEMY)
+		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.e_front.img[map->frame], col * TILESIZE_X, row * TILESIZE_X);
+}
+
 void	put_images(t_map *map)
 {
-	int	i;
-	int	j;
+	int	row;
+	int	col;
 
-	i = 0;
-	j = 0;
-	while (i < map->rows)
+	row = 0;
+	col = 0;
+	while (row < map->rows)
 	{
-		j = 0;
-		while (j < map->columns)
+		col = 0;
+		while (col < map->columns)
 		{
 			mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->graphic.background.img, j * TILESIZE_X, i
-					* TILESIZE_Y);
-			if (map->grid[i][j] == WALL)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.wall.img, j * TILESIZE_X, i * TILESIZE_Y);
-			if (map->grid[i][j] == PLAYER)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.front.img[0], j * TILESIZE_X, i
-						* TILESIZE_Y);
-			if (map->grid[i][j] == EXIT)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.exit_closed.img, j * TILESIZE_X, i
-						* TILESIZE_Y);
-			if (map->grid[i][j] == COLLECTIBLE)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.collectibles.img, j * TILESIZE_X, i
-						* TILESIZE_Y);
-			j++;
+				map->graphic.background.img, col * TILESIZE_X, row
+				* TILESIZE_Y);
+			images_to_window(map, col, row);
+			col++;
 		}
-		i++;
+		row++;
 	}
 }

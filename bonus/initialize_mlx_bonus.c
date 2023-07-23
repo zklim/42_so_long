@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:14:02 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 16:29:45 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 12:52:11 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ void	initialize_mlx(t_map *map)
 	mlx_key_hook(map->mlx_win, key_hook, &map->mlx);
 	mlx_hook(map->mlx_win, 17, 0, destroy_win, map);
 	mlx_loop_hook(map->mlx, render, map);
+	map->grid[3][3] = 'K';
 	mlx_loop(map->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 16:53:44 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 12:24:09 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 # define PLAYER 'P'
 # define EXIT 'E'
 # define COLLECTIBLE 'C'
+# define ENEMY 'K'
 
 # define ESC 53
 # define UP 126
@@ -67,17 +68,10 @@ typedef struct s_img
 
 typedef struct s_sprite
 {
-	void	*img[4];
+	void	**img;
 	int		width;
 	int		height;
 }			t_sprite;
-
-typedef struct s_esprite
-{
-	void	*img[10];
-	int		width;
-	int		height;
-}			t_esprite;
 
 typedef struct s_graphic
 {
@@ -87,10 +81,10 @@ typedef struct s_graphic
 	t_sprite		back;
 	t_sprite		left;
 	t_sprite		right;
-	t_esprite		e_front;
-	t_esprite		e_back;
-	t_esprite		e_left;
-	t_esprite		e_right;
+	t_sprite		e_front;
+	t_sprite		e_back;
+	t_sprite		e_left;
+	t_sprite		e_right;
 	t_img			exit_closed;
 	t_img			exit_opened;
 	t_img			collectibles;
