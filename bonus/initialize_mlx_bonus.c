@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:14:02 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 12:52:11 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:40:09 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	destroy_win(t_map *map)
 	(void)*map;
 	ft_printf("Window closing\n");
 	mlx_destroy_window(map->mlx, map->mlx_win);
+	free_sprites(map);
 	free_error_exit(map, 0);
 	return (0);
 }
@@ -28,11 +29,11 @@ void	initialize_mlx(t_map *map)
 			* TILESIZE_Y, "so_long");
 	if (!map->mlx_win)
 		key_hook(ESC, map);
+	generate_enemy(map);
 	load_images(map);
 	put_images(map);
 	mlx_key_hook(map->mlx_win, key_hook, &map->mlx);
 	mlx_hook(map->mlx_win, 17, 0, destroy_win, map);
 	mlx_loop_hook(map->mlx, render, map);
-	map->grid[3][3] = 'K';
 	mlx_loop(map->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:47:13 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 12:58:34 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:41:17 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,85 @@
 static void	direction(t_map *map)
 {
 	if (map->player.direction == UP)
-		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.back.img[map->frame], map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.back.img[map->frame], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
 	else if (map->player.direction == DOWN)
-		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.front.img[map->frame], map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.front.img[map->frame], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
 	else if (map->player.direction == LEFT)
-		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.left.img[map->frame], map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.left.img[map->frame], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
 	else if (map->player.direction == RIGHT)
-		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.right.img[map->frame], map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.right.img[map->frame], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
 }
 
-int render(t_map *map)
+static void	dead_direction(t_map *map, int i)
 {
-	static int	frame;
+	if (map->player.direction == UP)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.d_back.img[i], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
+	else if (map->player.direction == DOWN)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.d_front.img[i], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
+	else if (map->player.direction == LEFT)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.d_left.img[i], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
+	else if (map->player.direction == RIGHT)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+				map->graphic.d_right.img[i], map->player.x * TILESIZE_X,
+				map->player.y * TILESIZE_Y);
+}
 
-	if (frame == 1000)
+void	put_string(t_map *map)
+{
+	char	*str;
+	char	*res;
+	char	*num;
+
+	str = "Walk count: ";
+	num = ft_itoa(map->walk_count);
+	res = ft_strjoin(str, num);
+	free(num);
+	mlx_string_put(map->mlx, map->mlx_win, 5, 2, 0x00FFFFFF, res);
+	free(res);
+}
+
+int	render(t_map *map)
+{
+	static int frame;
+	static int e_frame;
+	static int dead_counter;
+
+	if (dead_counter < 4)
 	{
-		if (map->frame == 4)
-			map->frame = 0;
-		put_images(map);
-		if (!map->exited)
-			direction(map);
-		map->frame++;
-		frame = 0;
-		mlx_string_put(map->mlx, map->mlx_win, 5, 16, 0x00FFFFFF, "TEST");
+		if (frame == FRAME || map->force_update)
+		{
+			if (map->frame == 4)
+				map->frame = 0;
+			put_images(map);
+			if (!map->exited && !map->player_dead)
+				direction(map);
+			else if (map->player_dead && dead_counter < 4)
+			{
+				dead_direction(map, dead_counter);
+				dead_counter++;
+			}
+			map->frame++;
+			frame = 0;
+			put_string(map);
+			map->force_update = 0;
+		}
+		move_enemy(map, &e_frame);
+		e_frame++;
+		frame++;
 	}
-	frame++;
-	return 0;
+	return (0);
 }

@@ -6,26 +6,11 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 12:47:39 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/23 18:40:17 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
-
-// int draw_char(t_map *map, int cache_x, int cache_y, t_sprite *dir)
-// {
-// 	if (map->exit.x == map->player.x && map->exit.y == map->player.y)
-// 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-// 			map->graphic.exit_closed.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
-// 	else
-// 	{
-// 		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.background.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
-// 		mlx_put_image_to_window(map->mlx, map->mlx_win, dir->img[0], map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
-// 	}
-// 	mlx_put_image_to_window(map->mlx, map->mlx_win,
-// 			map->graphic.background.img, cache_x * TILESIZE_X, cache_y * TILESIZE_Y);
-// 	return 0;
-// }
 
 int	check_component(t_map *map, int x, int y)
 {
@@ -41,11 +26,14 @@ int	check_component(t_map *map, int x, int y)
 		if (map->exit_opened)
 			map->exited = 1;
 		else
-			return 0;
+			return (0);
 	}
 	else if (map->grid[y][x] == WALL)
-		return 0;
-	return 1;
+		return (0);
+	else if (map->grid[y][x] == ENEMY_UP || map->grid[y][x] == ENEMY_DOWN
+			|| map->grid[y][x] == ENEMY_LEFT || map->grid[y][x] == ENEMY_RIGHT)
+		map->player_dead = 1;
+	return (1);
 }
 
 void	check_coord(t_map *map, int x, int y)
@@ -53,11 +41,12 @@ void	check_coord(t_map *map, int x, int y)
 	if (!check_component(map, x, y))
 		return ;
 	map->grid[map->player.y][map->player.x] = EMPTY;
-	if (!map->exited)
+	if (!map->exited && !map->player_dead)
 		map->grid[y][x] = PLAYER;
 	map->player.x = x;
 	map->player.y = y;
 	ft_printf("Walk count: %d\n", ++map->walk_count);
+	map->force_update = 1;
 }
 
 void	direction(int keycode, t_map *map)
@@ -70,7 +59,7 @@ void	direction(int keycode, t_map *map)
 	else if (keycode == S || keycode == DOWN)
 	{
 		map->player.direction = DOWN;
-		check_coord(map, map->player.x, map->player.y + 1);	
+		check_coord(map, map->player.x, map->player.y + 1);
 	}
 	else if (keycode == A || keycode == LEFT)
 	{
@@ -90,13 +79,16 @@ int	key_hook(int keycode, t_map *map)
 	{
 		ft_printf("Window closing\n");
 		mlx_destroy_window(map->mlx, map->mlx_win);
+		free_sprites(map);
 		free_error_exit(map, 0);
 	}
-	if (!map->exited)
+	if (!map->exited && !map->player_dead)
 	{
 		direction(keycode, map);
 		if (map->exited)
 			ft_printf("You finished the game!\n");
+		else if (map->player_dead)
+			ft_printf("You dead!\n");
 	}
 	return (0);
 }
