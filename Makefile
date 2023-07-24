@@ -6,25 +6,26 @@
 #    By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 15:22:50 by zhlim             #+#    #+#              #
-#    Updated: 2023/07/24 08:31:53 by zhlim            ###   ########.fr        #
+#    Updated: 2023/07/24 15:37:42 by zhlim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC				= so_long.c validate_map.c initialize_mlx.c error_handling.c save_as_grid.c lines_check.c path_check.c key_hook.c destroy_images.c
 SRCGNL			= $(addprefix libft/get_next_line/, $(addsuffix .c, get_next_line get_next_line_utils))
 SRCB			= $(addprefix bonus/, $(addsuffix _bonus.c, so_long validate_map initialize_mlx error_handling save_as_grid lines_check \
-					path_check key_hook render load_sprite load_images generate_enemy load_dead move_enemy destroy_images))
+					path_check key_hook render load_sprite load_images generate_enemy load_dead move_enemy destroy_images put_images))
 
 OBJ				= $(patsubst %.c,%.o,$(SRC))
 OBJGNL			= $(patsubst %.c,%.o,$(SRCGNL))
 OBJB			= $(patsubst %.c,%.o,$(SRCB))
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS			= -Wall -Werror -Wextra
 
 RM				= rm -f
 
-INCLUDES		= -Imlx -Ift_printf/include/ -Ilibft/get_next_line/ -Ilibft/ -I.
+INCLUDES		= -Ift_printf/include/ -Ilibft/get_next_line/ -Ilibft/ -I.
+# -Imlx
 
 NAME			= so_long
 NAMEB			= so_long_bonus
@@ -35,7 +36,8 @@ LIBFTFLAGS		= -Llibft/ -lft
 LIBPRINTF		= libft/ft_printf/libftprintf.a
 LIBPRINTFFLAGS	= -Llibft/ft_printf -lftprintf 
 
-LIBMLXFLAGS		= -Lmlx -lmlx -framework OpenGL -framework AppKit
+LIBMLXFLAGS		= -lmlx -framework OpenGL -framework AppKit
+# -Lmlx
 
 %.o:			%.c
 				$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:29:31 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 07:49:49 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:10:15 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,93 +45,20 @@ void	load_character(t_map *map)
 void	load_images(t_map *map)
 {
 	map->graphic.background.img = mlx_xpm_file_to_image(map->mlx,
-														BACKGROUND_PATH,
-														&map->graphic.background.width,
-														&map->graphic.background.height);
+			BACKGROUND_PATH, &map->graphic.background.width,
+			&map->graphic.background.height);
 	map->graphic.wall.img = mlx_xpm_file_to_image(map->mlx, WALL_PATH,
 			&map->graphic.wall.width, &map->graphic.wall.height);
 	map->graphic.exit_closed.img = mlx_xpm_file_to_image(map->mlx,
-															EXIT_CLOSED_PATH,
-															&map->graphic.exit_closed.width,
-															&map->graphic.exit_closed.height);
+			EXIT_CLOSED_PATH, &map->graphic.exit_closed.width,
+			&map->graphic.exit_closed.height);
 	map->graphic.exit_opened.img = mlx_xpm_file_to_image(map->mlx,
-															EXIT_OPENED_PATH,
-															&map->graphic.exit_opened.width,
-															&map->graphic.exit_opened.height);
+			EXIT_OPENED_PATH, &map->graphic.exit_opened.width,
+			&map->graphic.exit_opened.height);
 	map->graphic.collectibles.img = mlx_xpm_file_to_image(map->mlx,
-															COLLECTIBLES_PATH,
-															&map->graphic.collectibles.width,
-															&map->graphic.collectibles.height);
+			COLLECTIBLES_PATH, &map->graphic.collectibles.width,
+			&map->graphic.collectibles.height);
 	load_character(map);
 	load_enemy(map);
 	load_dead(map);
-}
-
-void	enemy_direction(t_map *map, int col, int row)
-{
-	if (map->grid[row][col] == ENEMY_UP)
-		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_back.img[map->e_frame], col * TILESIZE_X, row
-				* TILESIZE_X);
-	else if (map->grid[row][col] == ENEMY_DOWN)
-		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_front.img[map->e_frame], col * TILESIZE_X, row
-				* TILESIZE_X);
-	else if (map->grid[row][col] == ENEMY_LEFT)
-		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_left.img[map->e_frame], col * TILESIZE_X, row
-				* TILESIZE_X);
-	else if (map->grid[row][col] == ENEMY_RIGHT)
-		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.e_right.img[map->e_frame], col * TILESIZE_X, row
-				* TILESIZE_X);
-}
-
-void	images_to_window(t_map *map, int col, int row)
-{
-	if (map->grid[row][col] == WALL)
-		mlx_put_image_to_window(map->mlx, map->mlx_win, map->graphic.wall.img,
-				col * TILESIZE_X, row * TILESIZE_Y);
-	else if (map->grid[row][col] == EXIT)
-	{
-		if (map->exit_opened && !map->exited)
-			mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->graphic.exit_opened.img, col * TILESIZE_X, row
-					* TILESIZE_Y);
-		else
-			mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->graphic.exit_closed.img, col * TILESIZE_X, row
-					* TILESIZE_Y);
-	}
-	else if (map->grid[row][col] == COLLECTIBLE)
-		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.collectibles.img, col * TILESIZE_X, row
-				* TILESIZE_Y);
-	enemy_direction(map, col, row);
-}
-
-void	put_images(t_map *map)
-{
-	int row;
-	int col;
-
-	row = 0;
-	col = 0;
-	while (row < map->rows)
-	{
-		col = 0;
-		while (col < map->columns)
-		{
-			mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->graphic.background.img, col * TILESIZE_X, row
-					* TILESIZE_Y);
-			images_to_window(map, col, row);
-			col++;
-		}
-		row++;
-	}
-	if (map->exited)
-		mlx_string_put(map->mlx, map->mlx_win, (map->columns - 4) * TILESIZE_X / 2, (map->rows - 1) * TILESIZE_Y / 2, 0x0000FF00, "You Finished the Game!");
-	else if (map->player_dead)
-		mlx_string_put(map->mlx, map->mlx_win, (map->columns - 1) * TILESIZE_X / 2, (map->rows - 1) * TILESIZE_Y / 2, 0x00FF0000, "You Dead!");
 }

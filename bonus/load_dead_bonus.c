@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 16:26:31 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:40:22 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:04:54 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	load_dead(t_map *map)
 {
-	t_range range;
+	t_range	range;
 
 	range.start = 0;
 	range.end = 4;

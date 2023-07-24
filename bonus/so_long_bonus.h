@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 07:55:44 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:24:43 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,6 @@ void			move_enemy(t_map *map, int *e_frame);
 int				random_in_range(t_map *map, int max, int seed);
 char			**temp_grid(t_map *map);
 void			free_map(t_map *map);
-void	destroy_images(t_map *map);
+void			destroy_images(t_map *map);
 
 #endif

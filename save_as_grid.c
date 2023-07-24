@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 15:21:19 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/13 17:24:13 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:02:54 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**create_grid(t_map *map, char *line)
 
 void	save_as_grid(int fd, t_map *map)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(fd);
 	while (line)
@@ -58,6 +58,7 @@ void	save_as_grid(int fd, t_map *map)
 			break ;
 		map->rows++;
 		map->grid = create_grid(map, line);
+		free(line);
 		line = get_next_line(fd);
 	}
 }

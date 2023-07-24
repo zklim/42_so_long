@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 15:34:34 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:40:39 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:11:34 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	**malloc_range(int size)
 
 void	load_sprite(t_map *map, t_sprite *sprite, t_range range, char *prefix)
 {
-	int i;
-	char *path;
-	int size;
+	int		i;
+	char	*path;
+	int		size;
 
 	i = 0;
 	size = range.end - range.start;
@@ -49,9 +49,7 @@ void	load_sprite(t_map *map, t_sprite *sprite, t_range range, char *prefix)
 	{
 		path = path_string(prefix, SUFFIX, range.start);
 		sprite->img[i] = mlx_xpm_file_to_image(map->mlx,
-												path,
-												&sprite->width,
-												&sprite->height);
+				path, &sprite->width, &sprite->height);
 		free(path);
 		range.start++;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:23:15 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 22:36:10 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:33:56 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	set_enemy_pos(t_map *map, int seed)
 
 void	generate_enemy(t_map *map)
 {
-	int enemy_num;
+	int	enemy_num;
 
 	enemy_num = scale_with_map(map);
 	while (enemy_num)

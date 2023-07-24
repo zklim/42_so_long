@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 14:14:02 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 14:54:24 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:01:32 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,43 @@
 
 void	load_images(t_map *map)
 {
-	map->graphic.background.img = mlx_xpm_file_to_image(map->mlx, BACKGROUND_PATH,
-			&map->graphic.background.width, &map->graphic.background.height);
+	map->graphic.background.img = mlx_xpm_file_to_image(map->mlx,
+			BACKGROUND_PATH, &map->graphic.background.width,
+			&map->graphic.background.height);
 	map->graphic.wall.img = mlx_xpm_file_to_image(map->mlx, WALL_PATH,
 			&map->graphic.wall.width, &map->graphic.wall.height);
-	map->graphic.exit_closed.img = mlx_xpm_file_to_image(map->mlx, EXIT_CLOSED_PATH,
-			&map->graphic.exit_closed.width, &map->graphic.exit_closed.height);
-	map->graphic.exit_opened.img = mlx_xpm_file_to_image(map->mlx, EXIT_OPENED_PATH,
-			&map->graphic.exit_opened.width, &map->graphic.exit_opened.height);
+	map->graphic.exit_closed.img = mlx_xpm_file_to_image(map->mlx,
+			EXIT_CLOSED_PATH, &map->graphic.exit_closed.width,
+			&map->graphic.exit_closed.height);
+	map->graphic.exit_opened.img = mlx_xpm_file_to_image(map->mlx,
+			EXIT_OPENED_PATH, &map->graphic.exit_opened.width,
+			&map->graphic.exit_opened.height);
 	map->graphic.collectibles.img = mlx_xpm_file_to_image(map->mlx,
 			COLLECTIBLES_PATH, &map->graphic.collectibles.width,
 			&map->graphic.collectibles.height);
 	map->graphic.character.img = mlx_xpm_file_to_image(map->mlx,
 			CHARACTER_PATH, &map->graphic.character.width,
 			&map->graphic.character.height);
+}
+
+static void	too_many_lines(t_map *map, int i, int j)
+{
+	mlx_put_image_to_window(map->mlx, map->mlx_win,
+		map->graphic.background.img, j * TILESIZE_X, i * TILESIZE_Y);
+	if (map->grid[i][j] == WALL)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+			map->graphic.wall.img, j * TILESIZE_X, i * TILESIZE_Y);
+	if (map->grid[i][j] == PLAYER)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+			map->graphic.character.img, j * TILESIZE_X, i * TILESIZE_Y);
+	if (map->grid[i][j] == EXIT)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+			map->graphic.exit_closed.img, j * TILESIZE_X, i
+			* TILESIZE_Y);
+	if (map->grid[i][j] == COLLECTIBLE)
+		mlx_put_image_to_window(map->mlx, map->mlx_win,
+			map->graphic.collectibles.img, j * TILESIZE_X, i
+			* TILESIZE_Y);
 }
 
 void	put_images(t_map *map)
@@ -42,22 +65,7 @@ void	put_images(t_map *map)
 		j = 0;
 		while (j < map->columns)
 		{
-			mlx_put_image_to_window(map->mlx, map->mlx_win,
-					map->graphic.background.img, j * TILESIZE_X, i * TILESIZE_Y);
-			if (map->grid[i][j] == WALL)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.wall.img, j * TILESIZE_X, i * TILESIZE_Y);
-			if (map->grid[i][j] == PLAYER)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.character.img, j * TILESIZE_X, i * TILESIZE_Y);
-			if (map->grid[i][j] == EXIT)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.exit_closed.img, j * TILESIZE_X, i
-						* TILESIZE_Y);
-			if (map->grid[i][j] == COLLECTIBLE)
-				mlx_put_image_to_window(map->mlx, map->mlx_win,
-						map->graphic.collectibles.img, j * TILESIZE_X, i
-						* TILESIZE_Y);
+			too_many_lines(map, i, j);
 			j++;
 		}
 		i++;

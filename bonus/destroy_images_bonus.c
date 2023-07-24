@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 23:22:10 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 07:42:12 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:33:12 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	destroy_image(t_map *map, t_sprite *sprite, t_range range)
 	int	size;
 
 	i = 0;
-	size = range.end = range.start;
+	size = range.end - range.start;
 	while (i < size)
 	{
 		mlx_destroy_image(map->mlx, sprite->img[i]);
@@ -46,7 +46,7 @@ void	destroy_dead(t_map *map)
 	range.end = 4;
 	destroy_image(map, &map->graphic.d_front, range);
 	destroy_image(map, &map->graphic.d_back, range);
-	destroy_image(map, &map->graphic.d_back, range);
+	destroy_image(map, &map->graphic.d_left, range);
 	destroy_image(map, &map->graphic.d_right, range);
 }
 

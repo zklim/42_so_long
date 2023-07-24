@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 23:19:44 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:02:07 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@
 
 typedef struct s_img
 {
-	void	*img;
-	int		width;
-	int		height;
-}			t_img;
+	void		*img;
+	int			width;
+	int			height;
+}				t_img;
 
 typedef struct s_graphic
 {
@@ -64,13 +64,13 @@ typedef struct s_graphic
 	t_img		exit_closed;
 	t_img		exit_opened;
 	t_img		collectibles;
-}			t_graphic;
+}				t_graphic;
 
 typedef struct s_coord
 {
 	int			x;
 	int			y;
-}			t_coord;
+}				t_coord;
 
 typedef struct s_map
 {
@@ -89,18 +89,18 @@ typedef struct s_map
 	int			exited;
 	int			collected;
 	int			walk_count;
-}			t_map;
+}				t_map;
 
-void		print_error_exit(char *msg);
-void		validate_map(char *av, t_map *map);
-void		save_as_grid(int fd, t_map *map);
-void		initialize_mlx(t_map *map);
-void		free_error_exit(t_map *map, char *msg);
-void		lines_check(t_map *map);
-void		path_check(t_map *map);
-int			key_hook(int keycode, t_map *map);
-void		free_map(t_map *map);
-int 		render(t_map *map);
-void		destroy_images(t_map *map);
+void			print_error_exit(char *msg);
+void			validate_map(char *av, t_map *map);
+void			save_as_grid(int fd, t_map *map);
+void			initialize_mlx(t_map *map);
+void			free_error_exit(t_map *map, char *msg);
+void			lines_check(t_map *map);
+void			path_check(t_map *map);
+int				key_hook(int keycode, t_map *map);
+void			free_map(t_map *map);
+int				render(t_map *map);
+void			destroy_images(t_map *map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 17:23:18 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 18:41:13 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:13:49 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	valid_check(t_map *map, t_map *temp_map)
 
 void	path_check(t_map *map)
 {
-	t_map temp_map;
+	t_map	temp_map;
 
 	temp_map = *map;
 	temp_map.grid = temp_grid(map);

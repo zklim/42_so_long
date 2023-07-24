@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 08:09:06 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:17:34 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 		print_error_exit("Cannot more than one arguments");
 	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
 		print_error_exit("Not .ber file");
-	else 
+	else
 	{
 		initialize_map(&map);
 		validate_map(av[1], &map);

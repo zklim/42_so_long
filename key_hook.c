@@ -6,27 +6,31 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 23:21:13 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 15:01:27 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int draw_char(t_map *map, int cache_x, int cache_y)
+int	draw_char(t_map *map, int cache_x, int cache_y)
 {
 	if (map->exit.x == map->player.x && map->exit.y == map->player.y)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.exit_closed.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+			map->graphic.exit_closed.img, map->player.x
+			* TILESIZE_X, map->player.y * TILESIZE_Y);
 	else
 	{
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.background.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);
+			map->graphic.background.img, map->player.x
+			* TILESIZE_X, map->player.y * TILESIZE_Y);
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-				map->graphic.character.img, map->player.x * TILESIZE_X, map->player.y * TILESIZE_Y);	
+			map->graphic.character.img, map->player.x
+			* TILESIZE_X, map->player.y * TILESIZE_Y);
 	}
 	mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.background.img, cache_x * TILESIZE_X, cache_y * TILESIZE_Y);
-	return 0;
+		map->graphic.background.img, cache_x
+		* TILESIZE_X, cache_y * TILESIZE_Y);
+	return (0);
 }
 
 int	check_component(t_map *map, int x, int y)
@@ -43,16 +47,16 @@ int	check_component(t_map *map, int x, int y)
 		if (map->exit_opened)
 			map->exited = 1;
 		else
-			return 0;
+			return (0);
 	}
 	else if (map->grid[y][x] == WALL)
-		return 0;
-	return 1;
+		return (0);
+	return (1);
 }
 
 void	check_coord(t_map *map, int x, int y)
 {
-	int cache_x;
+	int	cache_x;
 	int	cache_y;
 
 	cache_x = map->player.x;
@@ -61,7 +65,8 @@ void	check_coord(t_map *map, int x, int y)
 		return ;
 	if (map->exit_opened)
 		mlx_put_image_to_window(map->mlx, map->mlx_win,
-			map->graphic.exit_opened.img, map->exit.x * TILESIZE_X, map->exit.y * TILESIZE_Y);
+			map->graphic.exit_opened.img, map->exit.x
+			* TILESIZE_X, map->exit.y * TILESIZE_Y);
 	map->player.x = x;
 	map->player.y = y;
 	draw_char(map, cache_x, cache_y);
