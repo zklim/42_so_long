@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:23:15 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 15:33:56 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:35:06 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,17 @@ int	random_in_range(t_map *map, int max, int seed)
 	return (rand);
 }
 
-void	set_enemy_pos(t_map *map, int seed)
+void	set_enemy_pos(t_map *map, int seed, int tries)
 {
 	int	x;
 	int	y;
 
+	if (!tries)
+		return ;
 	x = random_in_range(map, map->columns - 1, seed);
 	y = random_in_range(map, map->rows - 1, seed);
 	if (map->grid[y][x] != EMPTY)
-		set_enemy_pos(map, seed + 1);
+		set_enemy_pos(map, seed + 1, --tries);
 	else
 		map->grid[y][x] = ENEMY_DOWN;
 }
@@ -53,7 +55,7 @@ void	generate_enemy(t_map *map)
 	enemy_num = scale_with_map(map);
 	while (enemy_num)
 	{
-		set_enemy_pos(map, 1);
+		set_enemy_pos(map, 1, 10);
 		enemy_num--;
 	}
 }
