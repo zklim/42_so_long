@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 23:22:10 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 23:31:57 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 07:42:12 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,8 @@ void	destroy_enemy(t_map *map)
 	range.start = 0;
 	range.end = 10;
 	destroy_image(map, &map->graphic.e_front, range);
-	range.start = 11;
-	range.end = 21;
 	destroy_image(map, &map->graphic.e_back, range);
-	range.start = 22;
-	range.end = 32;
 	destroy_image(map, &map->graphic.e_left, range);
-	range.start = 33;
-	range.end = 43;
 	destroy_image(map, &map->graphic.e_right, range);
 }
 

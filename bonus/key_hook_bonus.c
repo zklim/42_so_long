@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 23:33:17 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 08:32:41 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	key_hook(int keycode, t_map *map)
 		if (map->exited)
 			ft_printf("You finished the game!\n");
 		else if (map->player_dead)
-			ft_printf("You dead!\n");
+			mlx_string_put(map->mlx, map->mlx_win, map->columns * TILESIZE_X / 2, map->rows * TILESIZE_Y / 2, 0x00FF0000, "You Dead!");;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/22 13:45:40 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 08:19:15 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,18 @@ int	main(int ac, char **av)
 {
 	t_map	map;
 
-	if (ac != 2)
+	ft_printf("pid: %d\n", getpid());
+	if (ac < 2)
 		print_error_exit("No map provided");
-	if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
+	else if (ac > 2)
+		print_error_exit("Cannot more than one arguments");
+	else if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
 		print_error_exit("Not .ber file");
-	initialize_map(&map);
-	validate_map(av[1], &map);
-	initialize_mlx(&map);
+	else 
+	{
+		initialize_map(&map);
+		validate_map(av[1], &map);
+		initialize_mlx(&map);
+	}
 	return (0);
 }

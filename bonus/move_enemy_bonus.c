@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 16:50:59 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 23:36:40 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 08:39:00 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static int	random_dir(t_map *map, int max, int seed)
 
 	seed2 = seed + ((map->player.x + map->exit.x) * map->collected) + ((map->player.y + map->exit.y) * map->walk_count);
 	rand = seed2 % max + 1;
-	ft_printf("%d, %d\n", seed2, rand);
 	return (rand);
 }
 

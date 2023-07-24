@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:29:31 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/23 23:01:38 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 07:49:49 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,4 +130,8 @@ void	put_images(t_map *map)
 		}
 		row++;
 	}
+	if (map->exited)
+		mlx_string_put(map->mlx, map->mlx_win, (map->columns - 4) * TILESIZE_X / 2, (map->rows - 1) * TILESIZE_Y / 2, 0x0000FF00, "You Finished the Game!");
+	else if (map->player_dead)
+		mlx_string_put(map->mlx, map->mlx_win, (map->columns - 1) * TILESIZE_X / 2, (map->rows - 1) * TILESIZE_Y / 2, 0x00FF0000, "You Dead!");
 }
