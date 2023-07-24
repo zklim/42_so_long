@@ -6,7 +6,7 @@
 #    By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 15:22:50 by zhlim             #+#    #+#              #
-#    Updated: 2023/07/24 15:37:42 by zhlim            ###   ########.fr        #
+#    Updated: 2023/07/24 16:25:57 by zhlim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJGNL			= $(patsubst %.c,%.o,$(SRCGNL))
 OBJB			= $(patsubst %.c,%.o,$(SRCB))
 
 CC				= gcc
-CFLAGS			= -Wall -Werror -Wextra
+CFLAGS			= -Wall -Werror -Wextra -g3 -fsanitize=address
 
 RM				= rm -f
 

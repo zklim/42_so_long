@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 15:22:53 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 14:56:26 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:26:19 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int ac, char **av)
 {
 	t_map	map;
 
-	ft_printf("pid: %d\n", getpid());
 	if (ac < 2)
 		print_error_exit("No map provided");
 	else if (ac > 2)
