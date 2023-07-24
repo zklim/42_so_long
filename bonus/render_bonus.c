@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 16:47:13 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 16:06:55 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:37:13 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	put_string(t_map *map)
 	res = ft_strjoin(str, num);
 	free(num);
 	mlx_string_put(map->mlx, map->mlx_win, 5, map->rows
-		* TILESIZE_Y - 21, 0x00FFFFFF, res);
+		* TILESIZE_Y - 22, 0x00FFFFFF, res);
 	free(res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 16:18:21 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/24 16:38:52 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,11 @@ int	key_hook(int keycode, t_map *map)
 	{
 		direction(keycode, map);
 		if (map->exited)
-			mlx_string_put(map->mlx, map->mlx_win, (map->columns - 5)
+			mlx_string_put(map->mlx, map->mlx_win, (map->columns - 10)
 				* TILESIZE_X / 2, map->rows * TILESIZE_Y / 2,
 				0x00FF0000, "You Finished The Game!");
 		else if (map->player_dead)
-			mlx_string_put(map->mlx, map->mlx_win, map->columns
+			mlx_string_put(map->mlx, map->mlx_win, (map->columns - 5)
 				* TILESIZE_X / 2, map->rows * TILESIZE_Y / 2,
 				0x00FF0000, "You Dead!");
 	}
