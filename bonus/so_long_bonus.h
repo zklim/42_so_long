@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 17:05:42 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 16:36:49 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:45:52 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@
 # define S 1
 # define A 0
 # define D 2
+# define Q 12
 
 typedef struct s_img
 {

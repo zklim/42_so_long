@@ -6,7 +6,7 @@
 /*   By: zhlim <zhlim@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 15:26:46 by zhlim             #+#    #+#             */
-/*   Updated: 2023/07/24 15:01:27 by zhlim            ###   ########.fr       */
+/*   Updated: 2023/07/25 12:45:00 by zhlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	check_coord(t_map *map, int x, int y)
 
 int	key_hook(int keycode, t_map *map)
 {
-	if (keycode == ESC)
+	if (keycode == ESC || keycode == Q)
 	{
 		ft_printf("Window closing\n");
 		destroy_images(map);
